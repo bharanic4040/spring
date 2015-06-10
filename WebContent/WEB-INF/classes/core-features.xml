@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+
+
+
+
+<!-- this bean can only be used as a parent for another -->
+ <bean id="parental" abstract="true">
+   <property name="message" value="CISCO Systems"/>
+ </bean>
+ 
+ <bean id="helloFactory"  class="core.HelloWorldBeanFact"  factory-method="createInstance">
+ </bean>
+   <!-- setter injection -->
+    <bean id="hello" class="core.HelloWorldBean">
+    <property name="message" value="CISCO"/>
+   <property name="help" ref="help"></property>
+    </bean>
+    
+    
+ <!-- constructor injection -->
+    <bean id="help" class="core.HelloWorldHelper" >
+    <constructor-arg value="573488"/>
+    <constructor-arg value="bchennu"/>
+    </bean>
+  
+  <!-- lifecycle methods explained here and also @Autowired -->
+    <bean id="helloLife" class="core.HelloLifecycle" init-method="createIt" destroy-method="destroyIt" >
+    </bean>
+    
+    
+   <bean id="helloAnnHelp" class="core.AnnotateConfigHelp" >
+    </bean>
+    
+    <!-- Access JNDI  
+     <bean id="dbDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/dncsDB"/>
+    </bean>-->
+    
+ </beans>
