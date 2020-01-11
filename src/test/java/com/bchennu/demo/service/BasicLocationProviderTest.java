@@ -6,19 +6,17 @@ import com.bchennu.demo.model.Driver;
 import com.bchennu.demo.model.Order;
 import com.bchennu.demo.model.Vehicle;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
-public class LocationProviderTest {
+public class BasicLocationProviderTest {
 
-    private LocationProvider locationProvider;
+    private AbstractLocationProvider locationProvider;
 
     private Order order;
 
@@ -26,7 +24,7 @@ public class LocationProviderTest {
 
     @Before
     public void setUp(){
-        locationProvider=new LocationProvider();
+        locationProvider=new BasicLocationProvider();
         order = new Order(order.getUserId(),order.getRestaurantId(),order.getOrderItems());
         order.setDeliveryAddress(new Address("Mumbai","TN","India",true));
         driverList=new ArrayList<>();

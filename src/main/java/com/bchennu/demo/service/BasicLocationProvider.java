@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Random;
 
 /*
-Geocoding API and also this class calculates the minimum distance driver of all the drivers
+Basic Geocoding API and also this class calculates the minimum distance driver of all the drivers
  */
 @Service
-public class LocationProvider {
+public class BasicLocationProvider extends AbstractLocationProvider{
 
 
     private static final double LEFT_LIMIT= -50d;
@@ -59,7 +59,7 @@ public class LocationProvider {
 
     }
 
-    //method to find distance between 2 lat/long points
+    //method to find distance between any 2 lat/long points
     private static double findDistance(double lat1, double lon1, double lat2, double lon2, String unit) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
@@ -85,7 +85,7 @@ public class LocationProvider {
 
     }
 
-    public static double genRandomDoubleForGeocoding() {
+    private static double genRandomDoubleForGeocoding() {
         double generatedDouble = LEFT_LIMIT + new Random().nextDouble() * (RIGHT_LIMIT - LEFT_LIMIT);
         return generatedDouble;
     }

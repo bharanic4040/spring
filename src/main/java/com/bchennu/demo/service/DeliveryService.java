@@ -2,7 +2,7 @@ package com.bchennu.demo.service;
 
 import com.bchennu.demo.model.Driver;
 import com.bchennu.demo.model.Order;
-import com.bchennu.demo.service.LocationProvider;
+import com.bchennu.demo.service.AbstractLocationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class DeliveryService {
 
     @Autowired
-    private LocationProvider locationProvider;
+    private AbstractLocationProvider locationProvider;
 
 
     public Driver allocateDriver(Order order){

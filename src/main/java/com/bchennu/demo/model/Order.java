@@ -1,5 +1,6 @@
 package com.bchennu.demo.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.bchennu.demo.model.OrderState.*;
@@ -18,6 +19,8 @@ public class Order extends BaseEntity {
 
     private OrderState state;
 
+    private LocalDateTime orderDate;
+
     private Driver driver;
 
     public Order(String userId, String restaurantId, List<OrderItem> orderItems){
@@ -25,6 +28,7 @@ public class Order extends BaseEntity {
         this.userId=userId;
         this.restaurantId=restaurantId;
         this.orderItems=orderItems;
+        this.orderDate=LocalDateTime.now();
 
     }
 
@@ -32,6 +36,17 @@ public class Order extends BaseEntity {
         switch(state) {
             case ORDER_PENDING:
                 this.setState(ORDER_APPROVED);
+                break;
+
+            default:
+                throw new UnsupportedOperationException("Wrong state of order");
+        }
+    }
+
+    public void rejectOrder(){
+        switch(state) {
+            case ORDER_PENDING:
+                this.setState(ORDER_REJECTED);
                 break;
 
             default:
@@ -100,5 +115,13 @@ public class Order extends BaseEntity {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
     }
 }
